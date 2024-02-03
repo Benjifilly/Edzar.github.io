@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Edzar's Portfolio</title>
+    <link rel="icon" href="icons.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</html>
+<body>
+    <nav>
+        <div id="underline"></div>
+        <lord-icon
+            class="icon"
+            id="home"
+            src="https://cdn.lordicon.com/wmwqvixz.json"
+            trigger="morph"
+            state="morph-home-3"
+            style="width:30px;height:30px"
+            onclick="moveUnderline(this); hideClock(); setTimeout(showPage1, 500); hidePage2()">
+        </lord-icon>
+        <lord-icon
+            class="icon"
+            id="clock-icon"
+            src="https://cdn.lordicon.com/kgdqzapd.json"
+            trigger="hover"
+            style="width:30px;height:30px"
+            onclick="moveUnderline(this); hidePage1(); setTimeout(showClock, 500); hidePage2()">
+        </lord-icon>
+        <lord-icon
+            class="icon"
+            id="help"
+            src="https://cdn.lordicon.com/ojnjgkun.json"
+            trigger="hover"
+            style="width:30px;height:30px"
+            onclick="moveUnderline(this); hideClock(); hidePage1(); showPage2();">
+        </lord-icon>
+    </nav>
+    <input type="checkbox" class="theme-checkbox" onclick="changeColor()">
+    <div id="clock"> 
+        <div class="clock">
+            <div class="hours">
+                <div class="first">
+                    <div class="number">0</div>
+                </div>
+                <div class="second">
+                    <div class="number">0</div>
+                </div>
+            </div>
+            <div class="tick">:</div>
+            <div class="minutes">
+                <div class="first">
+                    <div class="number">0</div>
+                </div>
+                <div class="second">
+                    <div class="number">0</div>
+                </div>
+            </div>
+            <div class="tick">:</div>
+            <div class="seconds">
+                <div class="first">
+                    <div class="number">0</div>
+                </div>
+                <div class="second infinite">
+                    <div class="number">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <svg version="1.1" id="cookieSvg" x="0px" y="0px" viewBox="0 0 122.88 122.25" xml:space="preserve" class="svg-icon">
+            <g>
+                <path d="M101.77,49.38c2.09,3.10,4.37,5.11,6.86,5.78c2.45,0.66,5.32,0.06,8.70-2.01c1.36-0.84,3.14-0.41,3.97,0.95 c0.28,0.46,0.42,0.96,0.43,1.47c0.13,1.40,0.21,2.82,0.24,4.26c0.03,1.46,0.02,2.91-0.05,4.35h0v0c0,0.13-0.01,0.26-0.03,0.38 c-0.91,16.72-8.47,31.51-20,41.93c-11.55,10.44-27.06,16.49-43.82,15.69v0.01h0c-0.13,0-0.26-0.01-0.38-0.03 c-16.72-0.91-31.51-8.47-41.93-20C5.31,90.61-0.73,75.10,0.07,58.34H0.07v0c0-0.13,0.01-0.26,0.03-0.38 C1,41.22,8.81,26.35,20.57,15.87C32.34,5.37,48.09-0.73,64.85,0.07V0.07h0c1.60,0,2.89,1.29,2.89,2.89c0,0.40-0.08,0.78-0.23,1.12 c-1.17,3.81-1.25,7.34-0.27,10.14c0.89,2.54,2.70,4.51,5.41,5.52c1.44,0.54,2.20,2.10,1.74,3.55l0.01,0 c-1.83,5.89-1.87,11.08-0.52,15.26c0.82,2.53,2.14,4.69,3.88,6.40c1.74,1.72,3.90,3,6.39,3.78c4.04,1.26,8.94,1.18,14.31-0.55 C99.73,47.78,101.08,48.30,101.77,49.38L101.77,49.38z M59.28,57.86c2.77,0,5.01,2.24,5.01,5.01c0,2.77-2.24,5.01-5.01,5.01 c-2.77,0-5.01-2.24-5.01-5.01C54.27,60.10,56.52,57.86,59.28,57.86L59.28,57.86z M37.56,78.49c3.37,0,6.11,2.73,6.11,6.11 s-2.73,6.11-6.11,6.11s-6.11-2.73-6.11-6.11S34.18,78.49,37.56,78.49L37.56,78.49z M50.72,31.75c2.65,0,4.79,2.14,4.79,4.79 c0,2.65-2.14,4.79-4.79,4.79c-2.65,0-4.79-2.14-4.79-4.79C45.93,33.89,48.08,31.75,50.72,31.75L50.72,31.75z M119.30,32.40 c1.98,0,3.58,1.60,3.58,3.58c0,1.98-1.60,3.58-3.58,3.58s-3.58-1.60-3.58-3.58C115.71,34.01,117.32,32.40,119.30,32.40L119.30,32.40z M93.62,22.91c2.98,0,5.39,2.41,5.39,5.39c0,2.98-2.41,5.39-5.39,5.39c-2.98,0-5.39-2.41-5.39-5.39 C88.23,25.33,90.64,22.91,93.62,22.91L93.62,22.91z M97.79,0.59c3.19,0,5.78,2.59,5.78,5.78c0,3.19-2.59,5.78-5.78,5.78 c-3.19,0-5.78-2.59-5.78-5.78C92.02,3.17,94.60,0.59,97.79,0.59L97.79,0.59z M76.73,80.63c4.43,0,8.03,3.59,8.03,8.03 c0,4.43-3.59,8.03-8.03,8.03s-8.03-3.59-8.03-8.03C68.70,84.22,72.29,80.63,76.73,80.63L76.73,80.63z M31.91,46.78 c4.80,0,8.69,3.89,8.69,8.69c0,4.80-3.89,8.69-8.69,8.69s-8.69-3.89-8.69-8.69C23.22,50.68,27.11,46.78,31.91,46.78L31.91,46.78z M107.13,60.74c-3.39-0.91-6.35-3.14-8.95-6.48c-5.78,1.52-11.16,1.41-15.76-0.02c-3.37-1.05-6.32-2.81-8.71-5.18 c-2.39-2.37-4.21-5.32-5.32-8.75c-1.51-4.66-1.69-10.20-0.18-16.32c-3.10-1.80-5.25-4.53-6.42-7.88c-1.06-3.05-1.28-6.59-0.61-10.35 C47.27,5.95,34.30,11.36,24.41,20.18C13.74,29.69,6.66,43.15,5.84,58.29l0,0.05v0h0l-0.01,0.13v0C5.07,73.72,10.55,87.82,20.02,98.30 c9.44,10.44,22.84,17.29,38.00,18.10l0.05,0h0v0l0.13,0.01h0c15.24,0.77,29.35-4.71,39.83-14.19c10.44-9.44,17.29-22.84,18.10-38l0-0.05 v0h0l0.01-0.13v0c0.07-1.34,0.09-2.64,0.06-3.91C112.98,61.34,109.96,61.51,107.13,60.74L107.13,60.74z M116.15,64.04L116.15,64.04 L116.15,64.04L116.15,64.04z M58.21,116.42L58.21,116.42L58.21,116.42L58.21,116.42z"></path>
+            </g>
+        </svg>
+         <p class="cookieHeading">We use cookies.</p>
+         <p class="cookieDescription">This website uses cookies to ensure you get the best experience on our site.</p>
+       
+         <div class="buttonContainer">
+           <button class="acceptButton">Allow</button>
+         <button class="declineButton">Decline</button>
+         </div>
+    </div>
+
+    <div id="Page1">
+        <div class="image-container">
+            <div class="image image1">
+                <div class="description">Beautiful sunset</div>
+            </div>
+            <div class="image image2">
+                <div class="description">Aquarium</div>
+            </div>
+            <div class="image image3">
+                <div class="description">Lion stretching</div>
+            </div>
+            <div class="image image4">
+                <div class="description">Stars</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page2">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="page2-inner"></div>
+        <div class="profile">
+            <div class="img"></div>
+            <span>About Me</span>
+            <p class="info">Welcome to Edzar's Coding Playground! 👨‍💻 I'm Edzar, a budding developer exploring Python, HTML, CSS, and more. This site is my testing ground where I experiment and showcase my coding journey💻✨</p>
+            <div class="share">
+              <a href="https://github.com/Benjifilly"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+              </svg></a>
+              <a href="https://twitter.com/Edzar1070"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+            </svg></a>
+              <a href="https://discord.com/users/882920589269020672"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0,0,256,256">
+                <g  stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M41.625,10.76953c-3.98047,-3.20313 -10.27734,-3.74609 -10.54687,-3.76563c-0.41797,-0.03516 -0.81641,0.19922 -0.98828,0.58594c-0.01562,0.02344 -0.15234,0.33984 -0.30469,0.83203c2.63281,0.44531 5.86719,1.33984 8.79297,3.15625c0.46875,0.28906 0.61328,0.90625 0.32422,1.375c-0.19141,0.30859 -0.51562,0.47656 -0.85156,0.47656c-0.17969,0 -0.36328,-0.05078 -0.52734,-0.15234c-5.03125,-3.12109 -11.3125,-3.27734 -12.52344,-3.27734c-1.21094,0 -7.49609,0.15625 -12.52344,3.27734c-0.46875,0.29297 -1.08594,0.14844 -1.375,-0.32031c-0.29297,-0.47266 -0.14844,-1.08594 0.32031,-1.37891c2.92578,-1.8125 6.16016,-2.71094 8.79297,-3.15234c-0.15234,-0.49609 -0.28906,-0.80859 -0.30078,-0.83594c-0.17578,-0.38672 -0.57031,-0.62891 -0.99219,-0.58594c-0.26953,0.01953 -6.56641,0.5625 -10.60156,3.80859c-2.10547,1.94922 -6.32031,13.33984 -6.32031,23.1875c0,0.17578 0.04688,0.34375 0.13281,0.49609c2.90625,5.10938 10.83984,6.44531 12.64844,6.50391c0.00781,0 0.01953,0 0.03125,0c0.32031,0 0.62109,-0.15234 0.80859,-0.41016l1.82813,-2.51562c-4.93359,-1.27344 -7.45312,-3.4375 -7.59766,-3.56641c-0.41406,-0.36328 -0.45312,-0.99609 -0.08594,-1.41016c0.36328,-0.41406 0.99609,-0.45312 1.41016,-0.08984c0.05859,0.05469 4.69922,3.99219 13.82422,3.99219c9.14063,0 13.78125,-3.95312 13.82813,-3.99219c0.41406,-0.35937 1.04297,-0.32422 1.41016,0.09375c0.36328,0.41406 0.32422,1.04297 -0.08984,1.40625c-0.14453,0.12891 -2.66406,2.29297 -7.59766,3.56641l1.82813,2.51563c0.1875,0.25781 0.48828,0.41016 0.80859,0.41016c0.01172,0 0.02344,0 0.03125,0c1.80859,-0.05859 9.74219,-1.39453 12.64844,-6.50391c0.08594,-0.15234 0.13281,-0.32031 0.13281,-0.49609c0,-9.84766 -4.21484,-21.23828 -6.375,-23.23047zM18.5,30c-1.93359,0 -3.5,-1.78906 -3.5,-4c0,-2.21094 1.56641,-4 3.5,-4c1.93359,0 3.5,1.78906 3.5,4c0,2.21094 -1.56641,4 -3.5,4zM31.5,30c-1.93359,0 -3.5,-1.78906 -3.5,-4c0,-2.21094 1.56641,-4 3.5,-4c1.93359,0 3.5,1.78906 3.5,4c0,2.21094 -1.56641,4 -3.5,4z"></path></g></g>
+                </svg></a>
+            <a href="https://www.youtube.com/channel/UCNHXd0aiwPI6u0zYZ1S_Osg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"></path>
+            </svg></a>
+            </div>
+            <button onclick="redirectToContact()">Contact-me</button>
+          </div>
+          
+        <div class="socket">
+			<div class="gel center-gel">
+				<div class="hex-brick h1" ></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c1 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c2 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c3 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c4 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c5 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c6 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c7 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c8 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c9 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c10 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c11 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c12 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c13 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c14 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c15 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c16 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c17 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c18 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c19 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c20 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c21 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c22 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c23 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c24 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c25 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c26 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c28 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c29 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c30 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c31 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c32 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c33 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c34 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c35 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c36 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c37 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+    </div>
+    
+
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    window.onload = function() {
+        var underline = document.getElementById('underline');
+        underline.style.left = '26px'; 
+        underline.style.width = (home.offsetWidth) + 'px'; 
+    }; 
+
+
+    var hoursContainer = document.querySelector('.hours')
+    var minutesContainer = document.querySelector('.minutes')
+    var secondsContainer = document.querySelector('.seconds')
+    var tickElements = Array.from(document.querySelectorAll('.tick'))
+
+    var last = new Date(0)
+    last.setUTCHours(-1)
+
+    var tickState = true
+
+
+    function updateTime () {
+    var now = new Date
+    
+    var lastHours = last.getHours().toString()
+    var nowHours = now.getHours().toString()
+    if (lastHours !== nowHours) {
+        updateContainer(hoursContainer, nowHours)
+    }
+    
+    var lastMinutes = last.getMinutes().toString()
+    var nowMinutes = now.getMinutes().toString()
+    if (lastMinutes !== nowMinutes) {
+        updateContainer(minutesContainer, nowMinutes)
+    }
+    
+    var lastSeconds = last.getSeconds().toString()
+    var nowSeconds = now.getSeconds().toString()
+    if (lastSeconds !== nowSeconds) {
+        //tick()
+        updateContainer(secondsContainer, nowSeconds)
+    }
+    
+    last = now
+    }
+
+    function tick () {
+    tickElements.forEach(t => t.classList.toggle('tick-hidden'))
+    }
+    
+
+    function updateNumber (element, number) {
+        var second = element.lastElementChild.cloneNode(true)
+        second.textContent = number
+    
+        if (element !== element.parentNode.lastElementChild) {
+            element.appendChild(second)
+            element.classList.add('move')
+    
+            setTimeout(function () {
+                element.classList.remove('move')
+            }, 990)
+            setTimeout(function () {
+                element.removeChild(element.firstElementChild)
+            }, 990)
+        } else {
+            element.lastElementChild.textContent = number
+        }
+    }
+
+    function updateContainer (container, newTime, animate) {
+        var time = newTime.split('')
+        
+        if (time.length === 1) {
+            time.unshift('0')
+        }
+        
+        var first = container.firstElementChild
+        if (first.lastElementChild.textContent !== time[0]) {
+            updateNumber(first, time[0], animate)
+        }
+        
+        var last = container.lastElementChild
+        if (last.lastElementChild.textContent !== time[1]) {
+            updateNumber(last, time[1], animate)
+        }
+    }
+    
+    function updateNumber (element, number, animate) {
+        var second = element.lastElementChild.cloneNode(true)
+        second.textContent = number
+    
+        if (animate) {
+            element.appendChild(second)
+            element.classList.add('move')
+    
+            setTimeout(function () {
+                element.classList.remove('move')
+            }, 990)
+            setTimeout(function () {
+                element.removeChild(element.firstElementChild)
+            }, 990)
+        } else {
+            element.lastElementChild.textContent = number
+        }
+    }
+    
+    function updateTime () {
+        var now = new Date
+        
+        var lastHours = last.getHours().toString()
+        var nowHours = now.getHours().toString()
+        if (lastHours !== nowHours) {
+            updateContainer(hoursContainer, nowHours, true)
+        }
+        
+        var lastMinutes = last.getMinutes().toString()
+        var nowMinutes = now.getMinutes().toString()
+        if (lastMinutes !== nowMinutes) {
+            updateContainer(minutesContainer, nowMinutes, true)
+        }
+        
+        var lastSeconds = last.getSeconds().toString()
+        var nowSeconds = now.getSeconds().toString()
+        if (lastSeconds !== nowSeconds) {
+            updateContainer(secondsContainer, nowSeconds, false)
+        }
+        
+        last = now
+    }
+    
+
+    
+
+
+    setInterval(updateTime, 100)
+
+    var home = document.getElementById('home');
+    var clockIcon = document.getElementById('clock-icon');
+    var help = document.getElementById('help');
+
+    function showClock() {
+        var clock = document.getElementById('clock');
+        clock.style.display = 'flex';
+        clock.querySelector('.clock').style.display = 'flex';
+        clock.classList.add('slide-bottom');
+    }
+
+    function hideClock() {
+        var clock = document.getElementById('clock');
+        clock.classList.remove('slide-bottom');
+        clock.classList.add('slide-top');
+
+        setTimeout(function() {
+            clock.style.display = 'none';
+            clock.classList.remove('slide-top');
+        }, 500);
+    }
+
+    function showPage1() {
+        var page1 = document.getElementById('Page1');
+        page1.style.display = 'flex';
+        page1.classList.add('slide-in-bottom');
+    }
+
+    function hidePage1() {
+        var page1 = document.getElementById('Page1');
+        page1.classList.remove('slide-in-bottom');
+        page1.classList.add('slide-out-bottom');
+
+        setTimeout(function() {
+            page1.style.display = 'none';
+            page1.classList.remove('slide-out-bottom');
+        }, 500);
+    }
+
+    function moveUnderline(element) {
+        requestAnimationFrame(function() {
+            var underline = document.getElementById('underline');
+            underline.style.width = (element.offsetWidth) + 'px';
+
+            var nav = document.querySelector('nav');
+            var leftPosition = element.getBoundingClientRect().left - nav.getBoundingClientRect().left + 10;
+            var centerPosition = leftPosition + (element.offsetWidth / 2) - (underline.offsetWidth / 2);
+            underline.style.left = centerPosition + 'px';
+        });
+    }
+
+    document.querySelector('.theme-checkbox').addEventListener('change', function() {
+        var nav = document.querySelector('nav');
+        document.body.classList.toggle('theme-active', this.checked);
+        if (this.checked) {
+            nav.classList.add('theme-active');
+        } else {
+            nav.classList.remove('theme-active');
+        }
+    });
+
+    var card = document.querySelector('.card');
+    var acceptButton = document.querySelector('.acceptButton');
+    var declineButton = document.querySelector('.declineButton');
+
+    acceptButton.addEventListener('click', function() {
+        setCookie('cookieConsent', 'allow', 365);
+        fadeOut(card);
+    });
+
+    declineButton.addEventListener('click', function() {
+        setCookie('cookieConsent', 'decline', 365);
+        fadeOut(card);
+    });
+
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    window.onload = function() {
+        var cookieConsent = getCookie('cookieConsent');
+        if (cookieConsent !== 'allow' && cookieConsent !== 'decline') {
+            fadeIn(card);
+        }
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    function fadeIn(element) {
+        element.classList.add('visible');
+    }
+
+    function fadeOut(element) {
+        element.classList.remove('visible');
+        setTimeout(function() {
+            element.style.display = 'none';
+        }, 500); 
+    }
+
+    function showPage2() {
+        var page2 = document.querySelector('.page2');
+        page2.classList.add('visible');
+    }
+
+    function hidePage2() {
+        var page2 = document.querySelector('.page2');
+        page2.classList.remove('visible');
+    }
+
+    function changeColor() {
+        var cookieHeading = document.querySelector('.cookieHeading');
+        var cookieDescription = document.querySelector('.cookieDescription');
+        if (document.body.classList.contains('theme-active')) {
+            cookieHeading.style.color = 'black';
+            cookieDescription.style.color = 'black';
+            return;
+        }
+        else {
+            cookieHeading.style.color = 'white';
+            cookieDescription.style.color = 'white';
+        }
+    }
+
+    function redirectToContact() {
+        window.location.href = 'https://www.linkedin.com/in/benjamin-filly-05427727a/';
+    }
+</script>
+</body>
+</html>
